@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option go_package = "proto/flightService";
+
+package proto;
+
+service FlightService {
+  rpc CancelBooking(BookingCancellationRequest) returns (BookingCancellationResponse);
+  rpc BookTicket(BookTicketRequest) returns (BookTicketResponse);
+  rpc ChangeBooking(ChangeBookingRequest) returns (ChangeBookingResponse);
+}
+
+message BookingCancellationRequest{
+  int32 bookingId= 1;
+}
+
+message BookingCancellationResponse{
+  bool isSuccess = 1;
+}
+
+message ChangeBookingRequest{
+  int32 bookingId = 1;
+  int32 flightNumber = 2;
+}
+
+message ChangeBookingResponse{
+  bool isSuccess = 1;
+}
+
+message Person {
+  string name = 1;
+  int32  age  = 2;
+  string documentNumber = 3;
+  string Country = 4;
+}
+
+message BookTicketRequest{
+  int32 flightNumber = 1;
+  Person person = 2;
+}
+
+message BookTicketResponse{
+  bool isSuccess = 1;
+  int32 bookingId = 2;
+}
